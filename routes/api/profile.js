@@ -15,7 +15,7 @@ const request = require('request')
 router.get('/me', auth, async (req, res) => {
     try {
 
-        const profile = await (await Profile.findOne({ user: req.user.id }))
+        const profile = await  Profile.findOne({ user: req.user.id })
         if (!profile) {
             return res.status(400).json({ error: [{ msg: "There is no profile for this user" }] })
         }
@@ -284,8 +284,8 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
         res.status(500).send('Server Error')
     }
 })
-//@route  Get api/profile/github/username
-//Desc   get github profile and repo bu username
+//@route  Get api/profile/github/:username
+//Desc   get github profile and repo by username
 //@acess  Public
 router.get('/github/:username', [auth],
      (req, res) => {
